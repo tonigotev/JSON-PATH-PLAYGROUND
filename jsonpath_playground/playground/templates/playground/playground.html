@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSONPath Playground</title>
+</head>
+<body>
+    <h1>JSONPath Playground</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="json_data">JSON Data:</label><br>
+            <textarea id="json_data" name="json_data" rows="10" cols="50">{{ json_data }}</textarea>
+        </div>
+        <div>
+            <label for="json_path">JSONPath Expression:</label><br>
+            <input type="text" id="json_path" name="json_path" value="{{ json_path }}" size="50">
+        </div>
+        <div>
+            <button type="submit">Evaluate</button>
+        </div>
+    </form>
+
+    {% if error %}
+    <div style="color: red;">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if result %}
+    <div>
+        <h2>Result:</h2>
+        <pre>{{ result|safe }}</pre>
+    </div>
+    {% endif %}
+</body>
+</html>
